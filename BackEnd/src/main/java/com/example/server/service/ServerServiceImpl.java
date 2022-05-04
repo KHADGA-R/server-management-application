@@ -4,6 +4,7 @@ import com.example.server.models.Server;
 import com.example.server.repository.ServerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import static java.util.List.of;
 @Slf4j
 public class ServerServiceImpl implements ServerService{
 
+    @Autowired
     private ServerRepository serverRepository;
 
     @Override

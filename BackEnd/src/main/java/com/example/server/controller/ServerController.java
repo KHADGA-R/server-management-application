@@ -5,10 +5,13 @@ import com.example.server.models.Response;
 import com.example.server.models.Server;
 import com.example.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -25,6 +28,7 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 @RequiredArgsConstructor
 public class ServerController {
 
+    @Autowired
     private ServerService serverService;
 
     @GetMapping("/list")
@@ -93,9 +97,9 @@ public class ServerController {
                         .build()
         );
     }
-    @GetMapping(path = "/image/{fileName}",produces = IMAGE_PNG_VALUE)
-    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Documents/ANGULAR PROJECT/resources/" + fileName));
+    @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
+        public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
+            return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/Downloads/images/" + fileName));
     }
 
 }
